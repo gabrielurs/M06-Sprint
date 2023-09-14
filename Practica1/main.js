@@ -1,7 +1,6 @@
 let datos = [];
 contador = 0;
-
-
+let ul;
 
 function afegirArray(){
     datos.push(document.getElementById("input").value);
@@ -12,24 +11,41 @@ function afegirArray(){
 
 
 function mostrarArray(){
-        let string = JSON.stringify(datos);
-        document.querySelector(".objetos").innerHTML = string;
+    if(document.getElementById("objetos")!=null){
+        document.getElementById("objetos").innerHTML = "";
+    }
 
-        const boton = document.createElement('button')
-        boton.id="botonBorrar";
-        boton.innerText = 'Borrar';
-        if(document.getElementById("botonBorrar")== null){
-            document.body.appendChild(boton);
-        }
+    ul = document.createElement('ul');
+    ul.setAttribute('id', 'lista');
 
-        boton.addEventListener('click', () => {
-            datos.pop();
-            mostrarArray();
-          })
+    document.getElementById('objetos').appendChild(ul);
+    datos.forEach(crearLi);
 }
 
 
-  
+
+function crearLi(element) {
+    let li = document.createElement('li');
+    li.setAttribute('class','item');
 
 
+    let boton = document.createElement('button')
+    boton.id="botonBorrar";
+    boton.innerText = 'Borrar';
 
+    ul.appendChild(li);
+    ul.appendChild(boton);
+
+    li.innerHTML=li.innerHTML + element;
+
+    boton.addEventListener('click', () => {
+       //Obtener la posicion del elemento que se quiere borrar
+       let posicion = datos.indexOf(element);
+       //Borrar el elemento
+       datos.splice(posicion, 1); 
+
+        mostrarArray();
+        contador = contador - 1;
+        document.getElementById("contador").innerHTML = contador;
+      })
+}
