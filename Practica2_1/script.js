@@ -5,7 +5,7 @@ var cognom;
 var edat;
 var correcto = false;
 
-
+//comment
 
 $(document).ready(function(){
     $("#SignUp").click(function(){
