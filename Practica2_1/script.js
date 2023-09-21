@@ -1,9 +1,9 @@
-let user;
-let password;
-let nom;
-let cognom;
-let edat;
-let correcto = false;
+var user;
+var password;
+var nom;
+var cognom;
+var edat;
+var correcto = false;
 
 //comment
 
@@ -50,7 +50,6 @@ $(document).ready(function(){
     });
   });
 
-  
   
 
   
