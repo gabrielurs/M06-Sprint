@@ -1,17 +1,23 @@
-#c1{
-    border: solid 1px;
-}
-
-#c2{
-    border: solid 1px;
-}
-
-#c3{
-    border: solid 1px;
-}
-
 
 .error { color: red; }
+
+.container,.container2{
+    border: solid 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container1{
+    border: solid 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+
+
 
 .inputs { margin-bottom: 3px;}
 .lab { margin-bottom: 3px;}
