@@ -1,9 +1,9 @@
-var user;
-var password;
-var nom;
-var cognom;
-var edat;
-var correcto = false;
+let user;
+let password;
+let nom;
+let cognom;
+let edat;
+let correcto = false;
 
 //comment
 
@@ -26,6 +26,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $("#Next").click(function(){
+      $(".error").remove();
       nom = $('#nom').val();
       cognom = $('#cognom').val();
       edat = $('#edat').val();
