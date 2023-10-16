@@ -7,11 +7,10 @@ async function getData(){
     if(localStorage == null){
     localStorage.setItem("jsonRick",JSON.stringify(json));
     }
-
+    
 
     let data = JSON.parse(localStorage.getItem("jsonRick"));
-
-    
+   
 
     document.getElementById("tbody").innerHTML = tab;
 
@@ -39,14 +38,20 @@ async function getData(){
     $("#taula").on("click", "#eliminar", function() {
         var col = $(this).closest("tr");
         var pos=col.find("td:eq(0)").html();
-        delete data['results'][pos-1]
-       
-
+        //delete data['results'][pos-1]
+        data['results'][pos-1] = "";
         localStorage.setItem("jsonRick", JSON.stringify(data));
         $(this).closest("tr").remove();
      });
 
+
+
 }
+
+
+
+
+
 
    
 
