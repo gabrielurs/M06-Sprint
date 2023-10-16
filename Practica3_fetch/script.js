@@ -1,47 +1,46 @@
 
 async function getData(){
+    let tab = '';
+
+    if(localStorage == null){
     const records = await fetch('https://rickandmortyapi.com/api/character/?limit=10000');
     json = await records.json(); 
-    let table;
-    let tab = '';
-    if(localStorage == null){
-        localStorage.setItem("jsonRick",JSON.stringify(json));
+    localStorage.setItem("jsonRick",JSON.stringify(json));
     }
+    
 
+    let data = JSON.parse(localStorage.getItem("jsonRick"));
 
-
-    data = JSON.parse(localStorage.getItem("jsonRick"));
-
-
-
- 
-    data.results.forEach(function (results) {
-        tab += `<tr>
-            <td>${results.name}</td>
-            <td>${results.status}</td>
-            <td>${results.species}</td>
-        </tr>`
-    });
-
-  
-
+    
+    
 
     $("#taula").on("click", "#eliminar", function() {
+        var col = $(this).closest("tr");
+        var pos=col.find("td:eq(0)").html();
+        delete data['results'][pos-1]
+        localStorage.setItem("jsonRick", JSON.stringify(data));
         $(this).closest("tr").remove();
-        delete data;
      });
+
+
+     console.log(data);
+    
+   
+ 
 
     document.getElementById("tbody").innerHTML = tab;
 
-      table =  $('#taula').DataTable({
+    $('#taula').DataTable().destroy();
+     
+      $('#taula').DataTable({
         "data": data.results,
         "columns": [
-
+            {"data" : "id"},
             {"data" : "name"},
             {"data" : "status"},
             {"data" : "species"},
             {
-                render: function () {
+                render: function ( data, type, row ) {
                     return '<button type="button" class="btn btn-primary" id="eliminar">Eliminar</button>';
                 }
             }
