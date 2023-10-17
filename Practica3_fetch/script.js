@@ -38,8 +38,15 @@ async function getData(){
     $("#taula").on("click", "#eliminar", function() {
         var col = $(this).closest("tr");
         var pos=col.find("td:eq(0)").html();
-        //delete data['results'][pos-1]
-        data['results'][pos-1] = "";
+        data.results.forEach(function (results,index) {
+           if(results['id'] == pos){
+                data['results'].splice(index,1);
+           }
+        });
+        console.log(data['results']);
+       
+
+       
         localStorage.setItem("jsonRick", JSON.stringify(data));
         $(this).closest("tr").remove();
      });
